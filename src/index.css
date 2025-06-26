@@ -1,4 +1,19 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+  --color-bg: #f9fafb; /* light background */
+  --color-text: #18181b; /* dark text */
+  --color-heading: #111827; /* darker for headings */
+  --color-muted: #6b7280; /* muted/secondary text */
+}
+
+.dark {
+  --color-bg: #09090b; /* dark background */
+  --color-text: #e5e7eb; /* light text */
+  --color-heading: #f3f4f6; /* brighter for headings */
+  --color-muted: #9ca3af; /* muted/secondary text */
+}
 
 @theme {
   --color-border: hsl(var(--border));
@@ -9,7 +24,6 @@
   --color-primary-foreground: hsl(var(--primary-foreground));
 
   --color-card: hsl(var(--card));
-
   --animate-float: float 6s ease-in-out infinite;
   --animate-pulse-subtle: pulse-subtle 4s ease-in-out infinite;
   --animate-fade-in: fade-in 0.7s ease-out forwards;
@@ -18,6 +32,13 @@
   --animate-fade-in-delay-3: fade-in 0.7s ease-out 0.6s forwards;
   --animate-fade-in-delay-4: fade-in 0.7s ease-out 0.8s forwards;
   --animate-meteor: meteor 5s linear infinite;
+  --animate-enhanced-twinkle: enhanced-twinkle 6s ease-in-out infinite;
+  --animate-enhanced-meteor: enhanced-meteor 8s linear infinite;
+  --animate-float-drift: float-drift 12s ease-in-out infinite;
+  --animate-wave: cosmic-wave 20s ease-in-out infinite;
+  --animate-orbit: orbit 25s linear infinite;
+  --animate-orbit-reverse: orbit-reverse 30s linear infinite;
+  --animate-slow-orbit: slow-orbit 40s linear infinite;
 
   @keyframes float {
     0%,
@@ -46,8 +67,7 @@
       opacity: 1;
       transform: translateY(0);
     }
-  }
-  @keyframes meteor {
+  }  @keyframes meteor {
     0% {
       transform: rotate(215deg) translateX(0);
       opacity: 1;
@@ -58,6 +78,104 @@
     100% {
       transform: rotate(215deg) translateX(-500px);
       opacity: 0;
+    }
+  }
+
+  @keyframes enhanced-twinkle {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    25% {
+      opacity: 0.3;
+      transform: scale(0.8);
+    }
+    50% {
+      opacity: 0.8;
+      transform: scale(1.2);
+    }
+    75% {
+      opacity: 0.5;
+      transform: scale(0.9);
+    }
+  }
+
+  @keyframes enhanced-meteor {
+    0% {
+      transform: rotate(215deg) translateX(0) scale(0);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+      transform: rotate(215deg) translateX(50px) scale(1);
+    }
+    90% {
+      opacity: 1;
+      transform: rotate(215deg) translateX(-400px) scale(1);
+    }
+    100% {
+      transform: rotate(215deg) translateX(-500px) scale(0);
+      opacity: 0;
+    }
+  }
+
+  @keyframes float-drift {
+    0% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+      transform: translate(20px, -30px) rotate(90deg);
+    }
+    50% {
+      transform: translate(-10px, -60px) rotate(180deg);
+    }
+    75% {
+      transform: translate(-30px, -30px) rotate(270deg);
+    }
+    100% {
+      transform: translate(0, 0) rotate(360deg);
+    }
+  }
+
+  @keyframes cosmic-wave {
+    0% {
+      transform: scale(0.8) rotate(0deg);
+      opacity: 0.1;
+    }
+    50% {
+      transform: scale(1.2) rotate(180deg);
+      opacity: 0.3;
+    }
+    100% {
+      transform: scale(0.8) rotate(360deg);
+      opacity: 0.1;
+    }
+  }
+
+  @keyframes orbit {
+    0% {
+      transform: rotate(0deg) translateX(300px) rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg) translateX(300px) rotate(-360deg);
+    }
+  }
+
+  @keyframes orbit-reverse {
+    0% {
+      transform: rotate(0deg) translateX(200px) rotate(0deg);
+    }
+    100% {
+      transform: rotate(-360deg) translateX(200px) rotate(360deg);
+    }
+  }
+
+  @keyframes slow-orbit {
+    0% {
+      transform: rotate(0deg) translateX(400px) rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg) translateX(400px) rotate(-360deg);
     }
   }
 }
@@ -98,6 +216,17 @@
   body {
     @apply bg-background text-foreground transition-colors duration-300;
     font-feature-settings: "rlig" 1, "calt" 1;
+    font-family: 'Poppins', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+    color: var(--color-text);
+    background: var(--color-bg);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--color-heading);
+  }
+
+  .text-muted-foreground, .muted, .secondary, .subtitle {
+    color: var(--color-muted) !important;
   }
 }
 
@@ -152,6 +281,63 @@
 @utility meteor {
   @apply absolute bg-linear-to-r from-white via-white to-transparent rounded-full;
   box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.3);
+}
+
+@utility enhanced-star {
+  @apply absolute rounded-full bg-blue-100;
+  background: radial-gradient(circle, rgba(147, 197, 253, 0.9) 0%, rgba(147, 197, 253, 0.4) 50%, transparent 100%);
+  box-shadow: 0 0 15px 3px rgba(147, 197, 253, 0.6);
+}
+
+@utility enhanced-meteor {
+  @apply absolute rounded-full;
+  background: linear-gradient(90deg, rgba(147, 197, 253, 0.9) 0%, rgba(147, 197, 253, 0.6) 50%, transparent 100%);
+  box-shadow: 0 0 20px 8px rgba(147, 197, 253, 0.4);
+}
+
+@utility meteor-blue {
+  background: linear-gradient(90deg, rgba(59, 130, 246, 0.9) 0%, rgba(59, 130, 246, 0.6) 50%, transparent 100%);
+  box-shadow: 0 0 20px 8px rgba(59, 130, 246, 0.4);
+}
+
+@utility meteor-purple {
+  background: linear-gradient(90deg, rgba(168, 85, 247, 0.9) 0%, rgba(168, 85, 247, 0.6) 50%, transparent 100%);
+  box-shadow: 0 0 20px 8px rgba(168, 85, 247, 0.4);
+}
+
+@utility floating-particle {
+  @apply absolute rounded-full;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.6) 0%, rgba(99, 102, 241, 0.2) 70%, transparent 100%);
+  box-shadow: 0 0 12px 4px rgba(99, 102, 241, 0.3);
+}
+
+@utility cosmic-wave {
+  @apply absolute inset-0 rounded-full;
+  background: radial-gradient(circle, transparent 30%, rgba(147, 197, 253, 0.1) 70%, transparent 100%);
+  border: 1px solid rgba(147, 197, 253, 0.2);
+}
+
+@utility cosmic-orb {
+  @apply absolute rounded-full;
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, rgba(251, 191, 36, 0.8) 0%, rgba(251, 191, 36, 0.3) 50%, transparent 100%);
+  box-shadow: 0 0 15px 5px rgba(251, 191, 36, 0.4);
+}
+
+@utility orb-1 {
+  top: 20%;
+  left: 10%;
+}
+
+@utility orb-2 {
+  top: 60%;
+  right: 15%;
+}
+
+@utility orb-3 {
+  bottom: 30%;
+  left: 70%;
 }
 
 #root {
