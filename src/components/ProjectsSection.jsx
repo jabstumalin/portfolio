@@ -42,11 +42,11 @@ const projects = [
 		githubUrl: "#",
 	},
   {
-		id: 4,
+		id: 5,
 		title: "Eggsposed",
 		description:
 			"A system that uses YOLOv11 for real-time egg detection and geospatial mapping to track infestations in rice fields, helping farmers respond more effectively.",
-		image: "/projects/project4.png",
+		image: "/projects/project5.png",
 		tags: ["Python", "React.JS", "Flask", "MySQL", "OpenCV", "YOLOv11"],
 		demoUrl: "#",
 		githubUrl: "#",
@@ -125,7 +125,7 @@ export const ProjectsSection = () => {
 					<a
 						className="cosmic-button w-fit flex items-center mx-auto gap-2"
 						target="_blank"
-						href="https://github.com/machadop1407"
+						href="https://github.com/jabstumalin"
 					>
 						Check My Github <ArrowRight size={16} />
 					</a>
